@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 
+
 </head>
 <body class="d-flex h-100 text-center text-white bg-dark">
 
@@ -31,23 +32,33 @@
 
 
                 <div class="row mb-3">
-                    <h4 class="col-5 themed-grid-col">Day</h4>
+                    <h4 class="col-5 themed-grid-col">Date</h4>
                     <h4 class="col-1 themed-grid-col">
-                        <select  th:field="*{day.id}">
-                            <!--                        <option value="1">select class</option>-->
-                            <option th:each="day : ${days}" th:value="${day.id}"
-                                    th:text="${day.name}"></option>
-                        </select>
+                        <input id="input_date" size="60" th:field="*{date}" type="date" format="DD.MM.YYYY"
+                               placeholder=" DD.MM.YYYY" required />
                     </h4>
                 </div>
+
+                <script>
+                    const picker = document.getElementById('input_date');
+                    picker.addEventListener('input', function event (e){
+                        let day = new Date(this.value).getUTCDay();
+                        if([6,0].includes(day)){
+                            e.preventDefault();
+                            this.value = '';
+                            alert('Weekends not allowed');
+                        }
+                    });
+                </script>
 
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Time</h4>
                     <h4 class="col-1 themed-grid-col">
-                        <select  th:field="*{myTime.id}">
+                        <select  th:field="*{myTime.id}" required>
                             <!--                        <option value="1">select class</option>-->
                             <option th:each="time : ${times}" th:value="${time.id}"
-                                    th:text="${time.start} + ' - ' + ${time.end}"></option>
+                                    th:text="${#dates.format(time.start, 'HH:mm')}  +
+                                     ' - ' + ${#dates.format(time.start, 'HH:mm')} "></option>
                         </select>
                     </h4>
                 </div>

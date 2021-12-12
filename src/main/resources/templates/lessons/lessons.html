@@ -29,9 +29,10 @@
             <input type="text" onkeyup="search()"
                    placeholder="You can search anything!" title="Just type" class="search_input form-control-lg mb-5">
 
-            <div class="row mb-3">
+            <div class="row mb-2">
                 <h4 class="col-1 themed-grid-col"><b>Id</b></h4>
                 <h4 class="col-1 themed-grid-col"><b>Class</b></h4>
+                <h4 class="col-2 themed-grid-col"><b>Day</b></h4>
                 <h4 class="col-2 themed-grid-col"><b>Schedule</b></h4>
                 <h4 class="col-1 themed-grid-col"><b>Subject</b></h4>
                 <h4 class="col-2 themed-grid-col"><b>Teacher</b></h4>
@@ -41,8 +42,10 @@
             <div class="row mb-2" th:each="l:${lessons}">
                 <h5 class="col-1 themed-grid-col" th:text="${l.id}"></h5>
                 <h5 class="col-1 themed-grid-col" th:text="${l.clas.name}"></h5>
-                <h5 class="col-2 themed-grid-col" th:text="${l.day.name} + ' ' + ${l.myTime.start} + ' - ' +
-                 ${l.myTime.end}"></h5>
+                <h5 class="col-2 themed-grid-col" th:text="${#dates.format(l.date, 'EEEE dd.MM.yyyy')}"></h5>
+
+                <h5 class="col-2 themed-grid-col" th:text="${#dates.format(l.myTime.start, 'HH:mm')} + ' - ' +
+                 ${#dates.format(l.myTime.end, 'HH:mm')}"></h5>
                 <h5 class="col-1 themed-grid-col" th:text="${l.subject.name}"></h5>
                 <h5 class="col-2 themed-grid-col" th:text="${l.subject.teacher.firstName} +
                  ' ' + ${l.subject.teacher.SecondName}"></h5>

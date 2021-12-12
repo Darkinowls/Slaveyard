@@ -16,15 +16,13 @@ public class LessonController {
 
     private final LessonService lessonService;
     private final ClasService clasService;
-    private final DayService dayService;
     private final MyTimeService myTimeService;
     private final SubjectService subjectService;
 
     @Autowired
-    public LessonController(LessonService lessonService, ClasService clasService, DayService dayService, MyTimeService myTimeService, SubjectService subjectService) {
+    public LessonController(LessonService lessonService, ClasService clasService, MyTimeService myTimeService, SubjectService subjectService) {
         this.lessonService = lessonService;
         this.clasService = clasService;
-        this.dayService = dayService;
         this.myTimeService = myTimeService;
         this.subjectService = subjectService;
     }
@@ -42,9 +40,6 @@ public class LessonController {
 
         List<Clas> classes = clasService.findAll();
         model.addAttribute("classes", classes);
-
-        List<Day> days = dayService.findAll();
-        model.addAttribute("days", days);
 
         List<MyTime> times = myTimeService.findAll();
         model.addAttribute("times", times);
@@ -77,9 +72,6 @@ public class LessonController {
 
         List<Clas> classes = clasService.findAll();
         model.addAttribute("classes", classes);
-
-        List<Day> days = dayService.findAll();
-        model.addAttribute("days", days);
 
         List<MyTime> times = myTimeService.findAll();
         model.addAttribute("times", times);
