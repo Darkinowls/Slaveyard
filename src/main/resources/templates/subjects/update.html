@@ -29,8 +29,9 @@
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Name</h4>
                     <h4 class="col-5 themed-grid-col">
-                        <input type="text" th:field="*{name}" >
+                        <input type="text" th:field="*{name}" placeholder="subject name" pattern="^[a-z]{2,50}$" required>
                     </h4>
+                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
                 </div>
 
 
@@ -43,6 +44,7 @@
                                     th:text="${teacher.firstName} + ' ' + ${teacher.SecondName}"></option>
                         </select>
                     </h4>
+                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
                 </div>
 
 

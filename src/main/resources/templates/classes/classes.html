@@ -39,26 +39,25 @@
 <!--                <h5 class="col-2 themed-grid-col" th:text="${c.teacher.secondName}"></h5>-->
 
                 <h5 class=" themed-grid-col col-1 ">
-                    <a class="text-warning" th:href="@{classes/update/{id}(id=${c.id})}">
+                    <a class="text-warning" th:href="@{/classes/update/{id}(id=${c.id})}">
                         Update
                     </a>
                 </h5>
                 <h5 class="themed-grid-col col-1 ">
-                    <a class="text-danger" th:href="@{classes/delete/{id}(id=${c.id})}">
+                    <a class="text-danger" th:href="@{/classes/delete/{id}(id=${c.id})}">
                         Delete
                     </a>
                 </h5>
 
             </div>
 
-
-            <h5 class="p-auto m-5">
-                <a class="nav-link text-success mx-auto " href="/classes/create" style="width: 250px;">
-                    Create a new class
-                </a>
-            </h5>
-
         </div>
+
+        <h5 class="p-auto m-5">
+            <a class="nav-link text-success mx-auto " href="/classes/create" style="width: 250px;">
+                Create a new class
+            </a>
+        </h5>
 
 
     </main>

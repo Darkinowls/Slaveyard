@@ -36,7 +36,7 @@ public class LessonController {
     }
 
     @GetMapping("/lessons/create")
-    public String createLessonForm(Model model, Lesson lesson) {
+    public String createLessonForm(Lesson lesson, Model model) {
 
         List<Clas> classes = clasService.findAll();
         model.addAttribute("classes", classes);
@@ -52,7 +52,15 @@ public class LessonController {
     }
 
     @PostMapping("/lessons/create")
-    public String createLesson(Lesson lesson) {
+    public String createLesson(Lesson lesson, Model model) {
+
+        if (Boolean.TRUE.equals(
+                lessonService.existsByClasAndDateAndMyTime(lesson.getClas(), lesson.getDate(), lesson.getMyTime()))) {
+            model.addAttribute("exist", true);
+            return createLessonForm(lesson, model);
+        }
+
+
         lessonService.saveLesson(lesson);
         return "redirect:/lessons";
     }
@@ -84,8 +92,20 @@ public class LessonController {
 
 
     @PostMapping("/lessons/update")
-    public String updateLesson(Lesson lesson) {
-        return createLesson(lesson);
+    public String updateLesson(Lesson lesson, Model model) {
+
+
+        if (Boolean.TRUE.equals(
+                lessonService.existsByClasAndDateAndMyTime(lesson.getClas(), lesson.getDate(), lesson.getMyTime()))) {
+            model.addAttribute("exist", true);
+            return updateLessonForm(lesson.getId(), model);
+        }
+
+
+        lessonService.saveLesson(lesson);
+        return "redirect:/lessons";
+
+
     }
 
 }

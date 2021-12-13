@@ -33,6 +33,7 @@
                         <input type="text" th:field="*{name}" id="name" placeholder="name"
                                pattern="((^[1-9])|(^1?[0-1]))-[a-z]{1}" required>
                     </h4>
+                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
                 </div>
 
                 <div class="row mb-3">

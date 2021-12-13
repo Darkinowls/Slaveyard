@@ -40,7 +40,13 @@ public class ClasController {
     }
 
     @PostMapping("/classes/create")
-    public String createClass(Clas clas) {
+    public String createClass(Clas clas, Model model) {
+
+        if(Boolean.TRUE.equals(clasService.existsByName(clas.getName()))) {
+            model.addAttribute("exist", true);
+            return createClasForm(clas, model);
+        }
+
         clasService.saveClas(clas);
         return "redirect:/classes";
     }
@@ -54,6 +60,7 @@ public class ClasController {
 
     @GetMapping("/classes/update/{id}")
     public String updateClasForm(@PathVariable("id") int id, Model model) {
+
         Clas clas = clasService.findById(id);
         model.addAttribute("clas", clas);
 
@@ -65,8 +72,16 @@ public class ClasController {
 
 
     @PostMapping("/classes/update")
-    public String updateClas(Clas clas) {
-        return createClass(clas);
+    public String updateClas(Clas clas, Model model) {
+
+        if(Boolean.TRUE.equals(clasService.existsByName(clas.getName()))) {
+            model.addAttribute("exist", true);
+            return updateClasForm(clas.getId(), model);
+        }
+
+        clasService.saveClas(clas);
+        return "redirect:/classes";
+
     }
     
     

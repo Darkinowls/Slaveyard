@@ -34,5 +34,8 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
+    public Boolean existsByFirstNameAndSecondName(String firstName, String secondName){
+        return studentRepository.existsByFirstNameAndSecondName(firstName, secondName);
+    }
 
 }

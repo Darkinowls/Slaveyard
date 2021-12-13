@@ -31,12 +31,19 @@ public class TeacherController {
     }
 
     @GetMapping("/teachers/create")
-    public String createTeacherForm(Model model, Teacher teacher) {
+    public String createTeacherForm(Teacher teacher, Model model) {
         return "teachers/create";
     }
 
     @PostMapping("/teachers/create")
-    public String createTeacher(Teacher teacher) {
+    public String createTeacher(Teacher teacher, Model model) {
+
+        if(Boolean.TRUE.equals(
+                teacherService.existsByFirstNameAndSecondName(teacher.getFirstName(), teacher.getSecondName()))) {
+            model.addAttribute("exist", true);
+            return createTeacherForm(teacher, model);
+        }
+
         teacherService.saveTeacher(teacher);
         return "redirect:/teachers";
     }
@@ -57,7 +64,16 @@ public class TeacherController {
 
 
     @PostMapping("/teachers/update")
-    public String updateTeacher(Teacher teacher) {
-        return createTeacher(teacher);
+    public String updateTeacher(Teacher teacher, Model model) {
+
+        if(Boolean.TRUE.equals(
+                teacherService.existsByFirstNameAndSecondName(teacher.getFirstName(), teacher.getSecondName()))) {
+            model.addAttribute("exist", true);
+            return updateTeacherForm(teacher.getId(), model);
+        }
+
+        teacherService.saveTeacher(teacher);
+        return "redirect:/teachers";
+
     }
 }

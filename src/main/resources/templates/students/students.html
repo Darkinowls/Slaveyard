@@ -28,17 +28,19 @@
 
             <div class="row mb-3">
                 <h4 class="col-1 themed-grid-col"><b>Id</b></h4>
-                <h4 class="col-2 themed-grid-col"><b>First name</b></h4>
-                <h4 class="col-2 themed-grid-col"><b>Second name</b></h4>
+                <h4 class="col-2 themed-grid-col"><b>Full name</b></h4>
                 <h4 class="col-1 themed-grid-col"><b>Class</b></h4>
+                <h4 class="col-1 themed-grid-col"><b>Average Grade</b></h4>
+                <h4 class="col-1 themed-grid-col"><b>Average Presence</b></h4>
                 <h4 class="col-2 themed-grid-col"><b>options</b></h4>
             </div>
 
             <div class="row mb-2" th:each="s:${students}">
                 <h5 class="col-1 themed-grid-col" th:text="${s.id}"></h5>
-                <h5 class="col-2 themed-grid-col" th:text="${s.firstName}"></h5>
-                <h5 class="col-2 themed-grid-col" th:text="${s.secondName}"></h5>
+                <h5 class="col-2 themed-grid-col" th:text="${s.firstName} + ' ' + ${s.secondName}"></h5>
                 <h5 class="col-1 themed-grid-col" th:text="${s.clas.name}"></h5>
+                <h5 class="col-1 themed-grid-col" th:text="${s.calculateGrade()}"></h5>
+                <h5 class="col-1 themed-grid-col" th:text="${s.calculatePresence() + '%'}"></h5>
 
                 <h5 class=" themed-grid-col col-1 ">
                     <a class="text-warning" th:href="@{students/update/{id}(id=${s.id})}">
@@ -53,14 +55,14 @@
 
             </div>
 
-            <h5 class="p-auto m-5">
-                <a class="nav-link text-success mx-auto " href="/students/create" style="width: 250px;">
-                    Create a new student
-                </a>
-            </h5>
 
         </div>
 
+        <h5 class="p-auto m-5">
+            <a class="nav-link text-success mx-auto " href="/students/create" style="width: 250px;">
+                Create a new student
+            </a>
+        </h5>
 
     </main>
 

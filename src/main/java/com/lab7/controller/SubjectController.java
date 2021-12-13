@@ -35,7 +35,7 @@ public class SubjectController {
     }
 
     @GetMapping("/subjects/create")
-    public String createSubjectForm(Model model, Subject subject) {
+    public String createSubjectForm( Subject subject, Model model) {
 
         List<Teacher> teachers = teacherService.findAll();
         model.addAttribute("teachers", teachers);
@@ -44,7 +44,13 @@ public class SubjectController {
     }
 
     @PostMapping("/subjects/create")
-    public String createSubject(Subject subject) {
+    public String createSubject(Subject subject, Model model) {
+
+        if(Boolean.TRUE.equals(subjectService.existsByNameAndTeacher(subject.getName(), subject.getTeacher()))) {
+            model.addAttribute("exist", true);
+            return createSubjectForm(subject, model);
+        }
+
         subjectService.saveSubject(subject);
         return "redirect:/subjects";
     }
@@ -69,7 +75,17 @@ public class SubjectController {
 
 
     @PostMapping("/subjects/update")
-    public String updateSubject(Subject subject) {
-        return createSubject(subject);
+    public String updateSubject(Subject subject, Model model) {
+
+
+        if(Boolean.TRUE.equals(subjectService.existsByNameAndTeacher(subject.getName(), subject.getTeacher()))) {
+            model.addAttribute("exist", true);
+            return updateSubjectForm(subject.getId(), model);
+        }
+
+
+        subjectService.saveSubject(subject);
+        return "redirect:/subjects";
+
     }
 }

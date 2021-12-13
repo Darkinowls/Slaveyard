@@ -5,3 +5,9 @@
 .nav-link:focus, .nav-link:hover {
     color: green;
 }
+
+p{
+    margin-bottom: 0;
+    padding:0;
+
+}

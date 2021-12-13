@@ -16,14 +16,18 @@
 
     <main class="m-auto">
 
+
+
         <form action="#" th:action="@{/classes/create}" th:object="${clas}" method="post">
             <table >
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Name</h4>
                     <h4 class="col-5 themed-grid-col">
-                        <input type="text" th:field="*{name}" pattern="((^[1-9])|(^1?[0-1]))-[a-z]{1}"
-                               title="Input data like  11-a or 5-z" placeholder="name" required>
+                        <input type="text" th:field="*{name}" pattern="((^[1-9])|(^1?[0-1]))-[a-z]{1}$"
+                               title="Input data like  11-a or 5-z" placeholder="name"  required>
+
                     </h4>
+                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
                 </div>
 
                 <div class="row mb-3">

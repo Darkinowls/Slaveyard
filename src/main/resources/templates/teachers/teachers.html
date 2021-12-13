@@ -28,16 +28,14 @@
 
             <div class="row mb-3">
                 <h4 class="col-1 themed-grid-col"><b>Id</b></h4>
-                <h4 class="col-2 themed-grid-col"><b>First name</b></h4>
-                <h4 class="col-2 themed-grid-col"><b>Second name</b></h4>
+                <h4 class="col-2 themed-grid-col"><b>Full name</b></h4>
                 <h4 class="col-2 themed-grid-col"><b>Experience</b></h4>
                 <h4 class="col-2 themed-grid-col"><b>options</b></h4>
             </div>
 
             <div class="row mb-2" th:each="t:${teachers}">
                 <h5 class="col-1 themed-grid-col" th:text="${t.id}"></h5>
-                <h5 class="col-2 themed-grid-col" th:text="${t.firstName}"></h5>
-                <h5 class="col-2 themed-grid-col" th:text="${t.secondName}"></h5>
+                <h5 class="col-2 themed-grid-col" th:text="${t.firstName} + ' ' + ${t.secondName}"></h5>
                 <h5 class="col-2 themed-grid-col" th:text="${t.experience} + ' months'"></h5>
 
                 <h5 class=" themed-grid-col col-1 ">
@@ -54,14 +52,14 @@
             </div>
 
 
-            <h5 class="p-auto m-5">
-                <a class="nav-link text-success mx-auto " href="/teachers/create" style="width: 250px;">
-                    Create a new teacher
-                </a>
-            </h5>
-
         </div>
 
+
+        <h5 class="p-auto m-5">
+            <a class="nav-link text-success mx-auto " href="/teachers/create" style="width: 250px;">
+                Create a new teacher
+            </a>
+        </h5>
 
     </main>
 

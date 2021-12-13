@@ -29,6 +29,11 @@ public class ClasService {
 
     public Clas saveClas(Clas clas){
         return clasRepository.save(clas);
+
+    }
+
+    public Boolean existsByName(String name){
+        return clasRepository.existsByName(name);
     }
 
     public void deleteById(int id){

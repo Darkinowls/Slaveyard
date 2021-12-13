@@ -8,13 +8,16 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "students")
+@Table(name = "students",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"first_name", "second_name"})})
 public class Student {
 
     @Id
@@ -30,5 +33,42 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "class_id")
     private Clas clas;
+
+    @OneToMany(mappedBy = "student")
+    private List<MyRecord> myRecords;
+
+    public float calculateGrade() {
+
+        float size = 0;
+        float sum = 0;
+        for (MyRecord r : myRecords) {
+
+            if (r.getGrade() > 0) {
+                sum += r.getGrade();
+                size++;
+            }
+        }
+        if (size == 0) return 0;
+
+        return sum / size;
+    }
+
+    public float calculatePresence() {
+
+        float all = 0;
+        float absence = 0;
+        for (MyRecord r : myRecords) {
+            all++;
+
+            if (r.getGrade() == 0) {
+                absence++;
+            }
+        }
+
+        if (all == 0) return 0;
+
+        return (all - absence) / all * 100;
+    }
+
 
 }

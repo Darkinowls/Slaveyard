@@ -29,25 +29,20 @@
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col ">First name</h4>
                     <h4 class="col-5 themed-grid-col">
-                        <input type="text" th:field="*{firstName}" id="firstName" placeholder="firstName">
+                        <input type="text" th:field="*{firstName}" id="firstName"
+                               pattern="^[A-Z][a-z]{2,50}$" placeholder="First name" required>
                     </h4>
+                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
                 </div>
 
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Second name</h4>
                     <h4 class="col-5 themed-grid-col">
-                        <input type="text" th:field="*{secondName}" id="secondName" placeholder="secondName">
+                        <input type="text" th:field="*{secondName}" id="secondName"
+                               pattern="^[A-Z][a-z]{2,50}$" placeholder="Second name" required>
                     </h4>
+                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
                 </div>
-
-
-                <!--                <div class="row mb-3">-->
-                <!--                    <h4 class="col-5 themed-grid-col">Class</h4>-->
-                <!--                    <h4 class="col-5 themed-grid-col">-->
-                <!--                        <input type="text" th:field="*{className}" >-->
-                <!--                    </h4>-->
-                <!--                </div>-->
-
 
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Class</h4>

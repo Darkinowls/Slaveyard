@@ -6,22 +6,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
+
 
 @Getter
 @Setter
 @Entity
-@Table(name = "records")
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "records",
+        uniqueConstraints = {@UniqueConstraint(columnNames = { "student_id", "lesson_id" }) })
 public class MyRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "date")
-    private Date date;
 
     @Column(name = "grade")
     private Integer grade;
@@ -31,7 +29,9 @@ public class MyRecord {
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "subject_id")
-    private Subject subject;
+    @JoinColumn(name = "lesson_id")
+    private Lesson lesson;
+
+
 
 }

@@ -5,17 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "lessons")
+@Table(name = "lessons",
+        uniqueConstraints = {@UniqueConstraint(columnNames = { "class_id", "time_id", "date" }) })
 public class Lesson {
 
     @Id
@@ -36,5 +37,8 @@ public class Lesson {
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
+
+    @OneToMany(mappedBy = "lesson")
+    private List<MyRecord> myRecords;
 
 }

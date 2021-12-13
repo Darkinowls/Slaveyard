@@ -1,6 +1,7 @@
 package com.lab7.service;
 
 import com.lab7.model.Subject;
+import com.lab7.model.Teacher;
 import com.lab7.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,7 +35,9 @@ public class SubjectService {
         subjectRepository.deleteById(id);
     }
 
-
+    public boolean existsByNameAndTeacher(String name, Teacher teacher){
+        return subjectRepository.existsByNameAndTeacher(name, teacher);
+    }
 
 
 }
