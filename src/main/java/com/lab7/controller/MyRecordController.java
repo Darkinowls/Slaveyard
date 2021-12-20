@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class MyRecordController {
 
+    private final String REDIRECT_RECORDS = "redirect:/records";
     private final MyRecordService myRecordService;
     private final LessonService lessonService;
     private final StudentService studentService;
@@ -50,22 +51,22 @@ public class MyRecordController {
     }
 
     @PostMapping("/records/create")
-    public String createMyRecord( MyRecord myRecord, Model model) {
+    public String createMyRecord(MyRecord myRecord, Model model) {
 
-        if(Boolean.TRUE.equals(
+        if (Boolean.TRUE.equals(
                 myRecordService.existsByStudentAndLesson(myRecord.getStudent(), myRecord.getLesson()))) {
             model.addAttribute("exist", true);
             return createRecordForm(myRecord, model);
         }
 
         myRecordService.saveMyRecord(myRecord);
-        return "redirect:/records";
+        return REDIRECT_RECORDS;
     }
 
     @GetMapping("/records/delete/{id}")
     public String deleteMyRecord(@PathVariable("id") int id) {
         myRecordService.deleteById(id);
-        return "redirect:/records";
+        return REDIRECT_RECORDS;
     }
 
 
@@ -87,15 +88,23 @@ public class MyRecordController {
     @PostMapping("/records/update")
     public String updateMyRecord(MyRecord myRecord, Model model) {
 
-        if(Boolean.TRUE.equals(
-                myRecordService.existsByStudentAndLesson(myRecord.getStudent(), myRecord.getLesson()))) {
-            model.addAttribute("exist", true);
-            return updateMyRecordForm(myRecord.getId(), model);
+
+        MyRecord self = myRecordService.getByStudentAndLesson(myRecord.getStudent(), myRecord.getLesson());
+
+
+        if (self == null || (self.getId() == myRecord.getId() && !Objects.equals(self.getGrade(), myRecord.getGrade()))) {
+
+            myRecordService.saveMyRecord(myRecord);
+            return REDIRECT_RECORDS;
+
         }
 
-        myRecordService.saveMyRecord(myRecord);
-        return "redirect:/records";
+
+        model.addAttribute("exist", true);
+        return updateMyRecordForm(myRecord.getId(), model);
+
+
     }
-    
-    
+
+
 }

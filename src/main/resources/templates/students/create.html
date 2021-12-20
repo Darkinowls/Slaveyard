@@ -23,9 +23,9 @@
                     <h4 class="col-5 themed-grid-col">First name</h4>
                     <h4 class="col-5 themed-grid-col">
                         <input type="text" th:field="*{firstName}"
-                               pattern="^[A-Z][a-z]{2,50}$" placeholder="First name" required>
+                               pattern="^[A-Z][a-z]{2,50}$" placeholder="First name"
+                               title="Input first name like John" required>
                     </h4>
-                    <p class="col-10 text-danger" th:if="${exist}">• field should be unique</p>
                 </div>
 
 
@@ -33,17 +33,16 @@
                     <h4 class="col-5 themed-grid-col">Second name</h4>
                     <h4 class="col-5 themed-grid-col">
                         <input type="text" th:field="*{secondName}"
-                               pattern="^[A-Z][a-z]{2,50}$" placeholder="Second name" required>
+                               pattern="^[A-Z][a-z]{2,50}$" placeholder="Second name"
+                               title="Input second name like Smith" required>
                     </h4>
-                    <p class="col-10 text-danger" th:if="${exist}">• field should be unique</p>
                 </div>
-
 
 
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Class</h4>
                     <h4 class="col-1 themed-grid-col">
-                        <select  th:field="*{clas.id}">
+                        <select th:field="*{clas.id}">
                             <!--                        <option value="1">select class</option>-->
                             <option th:each="clas : ${classes}" th:value="${clas.id}"
                                     th:text="${clas.name}"></option>
@@ -54,6 +53,7 @@
 
                 <div class="row my-5">
                     <input type="submit" class="m-auto col-5 btn btn-success" value="Create student">
+                    <p class="text-danger" th:if="${exist}">* the student already exists</p>
                 </div>
 
             </table>

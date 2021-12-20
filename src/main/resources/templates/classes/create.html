@@ -24,10 +24,10 @@
                     <h4 class="col-5 themed-grid-col">Name</h4>
                     <h4 class="col-5 themed-grid-col">
                         <input type="text" th:field="*{name}" pattern="((^[1-9])|(^1?[0-1]))-[a-z]{1}$"
-                               title="Input data like  11-a or 5-z" placeholder="name"  required>
+                               title="Input data like 11-a or 5-z" placeholder="name"  required>
 
                     </h4>
-                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
+
                 </div>
 
                 <div class="row mb-3">
@@ -44,6 +44,7 @@
 
                 <div class="row my-5">
                     <input type="submit" class="m-auto col-5 btn btn-success" value="Create class">
+                    <p class="text-danger" th:if="${exist}">* the class already exists</p>
                 </div>
 
             </table>

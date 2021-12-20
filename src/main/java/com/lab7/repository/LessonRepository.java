@@ -9,6 +9,9 @@ import java.util.Date;
 
 public interface LessonRepository extends JpaRepository<Lesson, Integer> {
 
+    Lesson getByClasAndDateAndMyTime(Clas clas, Date date, MyTime myTime);
+
+
     Boolean existsByClasAndDateAndMyTime(Clas clas, Date date, MyTime myTime);
 
 }

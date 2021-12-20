@@ -29,7 +29,6 @@
                                      ' ' + ${student.secondName} "></option>
                         </select>
                     </h4>
-                    <div class="col-10 text-danger " th:if="${exist}">• field should be unique</div>
                 </div>
 
 
@@ -42,19 +41,20 @@
                                     ' ' + ${#dates.format(lesson.date, 'EEEE dd.MM.yyyy')}"></option>
                         </select>
                     </h4>
-                    <div class="col-10 text-danger " th:if="${exist}">• field should be unique</div>
                 </div>
 
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Grade</h4>
                     <h4 class="col-1 themed-grid-col">
-                        <input type="number" th:field="*{grade}" min="0" max="12" value="0" required>
+                        <input type="number" th:field="*{grade}"  min="0" max="12"
+                               title="Input grade 1-12. 0 means absence" required  >
                     </h4>
                 </div>
 
 
                 <div class="row my-5">
                     <input type="submit" class="m-auto col-5 btn btn-success" value="Create record">
+                    <p class="text-danger" th:if="${exist}">* the record already exists</p>
                 </div>
 
             </table>

@@ -1,6 +1,7 @@
 package com.lab7.controller;
 
 import com.lab7.model.Clas;
+import com.lab7.model.Student;
 import com.lab7.model.Teacher;
 import com.lab7.service.ClasService;
 import com.lab7.service.TeacherService;
@@ -16,6 +17,7 @@ import java.util.List;
 @Controller
 public class TeacherController {
 
+    private final String REDIRECT_TEACHERS = "redirect:/teachers";
     private final TeacherService teacherService;
 
     @Autowired
@@ -38,20 +40,20 @@ public class TeacherController {
     @PostMapping("/teachers/create")
     public String createTeacher(Teacher teacher, Model model) {
 
-        if(Boolean.TRUE.equals(
+        if (Boolean.TRUE.equals(
                 teacherService.existsByFirstNameAndSecondName(teacher.getFirstName(), teacher.getSecondName()))) {
             model.addAttribute("exist", true);
             return createTeacherForm(teacher, model);
         }
 
         teacherService.saveTeacher(teacher);
-        return "redirect:/teachers";
+        return REDIRECT_TEACHERS;
     }
 
     @GetMapping("/teachers/delete/{id}")
     public String deleteTeacher(@PathVariable("id") int id) {
         teacherService.deleteById(id);
-        return "redirect:/teachers";
+        return REDIRECT_TEACHERS;
     }
 
 
@@ -66,14 +68,18 @@ public class TeacherController {
     @PostMapping("/teachers/update")
     public String updateTeacher(Teacher teacher, Model model) {
 
-        if(Boolean.TRUE.equals(
-                teacherService.existsByFirstNameAndSecondName(teacher.getFirstName(), teacher.getSecondName()))) {
-            model.addAttribute("exist", true);
-            return updateTeacherForm(teacher.getId(), model);
+
+        Teacher self = teacherService.getByFirstNameAndSecondName(teacher.getFirstName(), teacher.getSecondName());
+
+        if (self == null || (self.getId() == teacher.getId() && self.getExperience() != teacher.getExperience())) {
+
+            teacherService.saveTeacher(teacher);
+            return REDIRECT_TEACHERS;
+
         }
 
-        teacherService.saveTeacher(teacher);
-        return "redirect:/teachers";
+        model.addAttribute("exist", true);
+        return updateTeacherForm(teacher.getId(), model);
 
     }
 }

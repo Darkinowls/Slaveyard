@@ -37,7 +37,7 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private List<MyRecord> myRecords;
 
-    public float calculateGrade() {
+    public String calculateGrade() {
 
         float size = 0;
         float sum = 0;
@@ -48,12 +48,12 @@ public class Student {
                 size++;
             }
         }
-        if (size == 0) return 0;
+        if (size == 0) return "0";
 
-        return sum / size;
+        return String.format("%.2f", sum / size);
     }
 
-    public float calculatePresence() {
+    public String calculatePresence() {
 
         float all = 0;
         float absence = 0;
@@ -65,9 +65,9 @@ public class Student {
             }
         }
 
-        if (all == 0) return 0;
+        if (all == 0 || (all - absence) == 0) return "0";
 
-        return (all - absence) / all * 100;
+        return String.format("%.2f", (all - absence) / all * 100);
     }
 
 

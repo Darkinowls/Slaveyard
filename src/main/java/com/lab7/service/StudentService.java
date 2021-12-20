@@ -38,4 +38,8 @@ public class StudentService {
         return studentRepository.existsByFirstNameAndSecondName(firstName, secondName);
     }
 
+    public Student getByFirstNameAndSecondName(String firstName, String secondName){
+        return studentRepository.getByFirstNameAndSecondName(firstName, secondName);
+    }
+
 }

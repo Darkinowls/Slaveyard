@@ -7,4 +7,6 @@ public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
 
     Boolean existsByFirstNameAndSecondName(String firstName, String secondName);
 
+    Teacher getByFirstNameAndSecondName(String firstName, String secondName);
+
 }

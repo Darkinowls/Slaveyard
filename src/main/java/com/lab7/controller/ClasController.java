@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class ClasController {
-    
+
+    private final String REDIRECT_CLASSES = "redirect:/classes";
     private final ClasService clasService;
     private final TeacherService teacherService;
 
@@ -42,19 +44,19 @@ public class ClasController {
     @PostMapping("/classes/create")
     public String createClass(Clas clas, Model model) {
 
-        if(Boolean.TRUE.equals(clasService.existsByName(clas.getName()))) {
+        if ((clasService.existsByName(clas.getName()))) {
             model.addAttribute("exist", true);
             return createClasForm(clas, model);
         }
 
         clasService.saveClas(clas);
-        return "redirect:/classes";
+        return REDIRECT_CLASSES;
     }
 
     @GetMapping("/classes/delete/{id}")
     public String deleteClas(@PathVariable("id") int id) {
         clasService.deleteById(id);
-        return "redirect:/classes";
+        return REDIRECT_CLASSES;
     }
 
 
@@ -74,15 +76,22 @@ public class ClasController {
     @PostMapping("/classes/update")
     public String updateClas(Clas clas, Model model) {
 
-        if(Boolean.TRUE.equals(clasService.existsByName(clas.getName()))) {
-            model.addAttribute("exist", true);
-            return updateClasForm(clas.getId(), model);
+        Clas self = clasService.getByName(clas.getName());
+
+
+        if (self == null || (self.getId() == clas.getId() && clas.getTeacher().getId() != self.getTeacher().getId())) {
+
+            clasService.saveClas(clas);
+            return REDIRECT_CLASSES;
+
         }
 
-        clasService.saveClas(clas);
-        return "redirect:/classes";
+
+        model.addAttribute("exist", true);
+        return updateClasForm(clas.getId(), model);
+
 
     }
-    
-    
+
+
 }

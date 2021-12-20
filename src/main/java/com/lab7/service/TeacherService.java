@@ -39,4 +39,9 @@ public class TeacherService {
         return teacherRepository.existsByFirstNameAndSecondName(firstName, secondName);
     }
 
+    public Teacher getByFirstNameAndSecondName(String firstName, String secondName){
+        return teacherRepository.getByFirstNameAndSecondName(firstName, secondName);
+    }
+
+
 }

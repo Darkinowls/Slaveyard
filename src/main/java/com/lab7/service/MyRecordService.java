@@ -40,6 +40,9 @@ public class MyRecordService {
         return  myRecordRepository.existsByStudentAndLesson(student, lesson);
     }
 
+    public MyRecord getByStudentAndLesson(Student student, Lesson lesson){
+        return  myRecordRepository.getByStudentAndLesson(student, lesson);
+    }
 
 
 }

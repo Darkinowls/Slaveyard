@@ -17,67 +17,50 @@
 
     <main class="m-auto">
 
-        <form action="#" th:action="@{/lessons/update}" th:object="${lesson}" method="post">
+        <form action="#" th:action="@{/records/update}" th:object="${myRecord}" method="post">
             <table>
 
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Id</h4>
                     <h4 class="col-5 themed-grid-col">
-                        <input readonly type="number" th:field="*{id}" id="id" placeholder="Id">
+                        <input readonly type="number" th:field="*{id}"  placeholder="Id">
                     </h4>
                 </div>
 
                 <div class="row mb-3">
-                    <h4 class="col-5 themed-grid-col">Class</h4>
+                    <h4 class="col-5 themed-grid-col">Student</h4>
                     <h4 class="col-1 themed-grid-col">
-                        <select  th:field="*{clas.id}">
-                            <option th:each="class : ${classes}" th:value="${class.id}"
-                                    th:text="${class.name}"></option>
+                        <select th:field="*{student.id}">
+                            <option th:each="student : ${students}" th:value="${student.id}"
+                                    th:text=" ${student.clas.name}  + ' ' + ${student.firstName} +
+                                     ' ' + ${student.secondName} "></option>
                         </select>
                     </h4>
-                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
                 </div>
 
 
-
                 <div class="row mb-3">
-                    <h4 class="col-5 themed-grid-col">Time</h4>
+                    <h4 class="col-5 themed-grid-col">Lesson</h4>
                     <h4 class="col-1 themed-grid-col">
-                        <select  th:field="*{myTime.id}" required>
-                            <!--                        <option value="1">select class</option>-->
-                            <option th:each="time : ${times}" th:value="${time.id}"
-                                    th:text="${#dates.format(time.start, 'HH:mm')}  +
-                                     ' - ' + ${#dates.format(time.start, 'HH:mm')} "></option>
-                        </select>
-                    </h4>
-                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
-                </div>
-
-                <div class="row mb-3">
-                    <h4 class="col-5 themed-grid-col">Time</h4>
-                    <h4 class="col-1 themed-grid-col">
-                        <select  th:field="*{myTime.id}">
-                            <!--                        <option value="1">select class</option>-->
-                            <option th:each="time : ${times}" th:value="${time.id}"
-                                    th:text="${time.start} + ' - ' + ${time.end}"></option>
+                        <select th:field="*{lesson.id}">
+                            <option th:each="lesson : ${lessons}" th:value="${lesson.id}"
+                                    th:text=" 'Lesson#' + ${lesson.myTime.id} + ' ' + ${lesson.subject.name} +
+                                    ' ' + ${#dates.format(lesson.date, 'EEEE dd.MM.yyyy')}"></option>
                         </select>
                     </h4>
                 </div>
 
                 <div class="row mb-3">
-                    <h4 class="col-5 themed-grid-col">Subject</h4>
+                    <h4 class="col-5 themed-grid-col">Grade</h4>
                     <h4 class="col-1 themed-grid-col">
-                        <select  th:field="*{subject.id}">
-                            <!--                        <option value="1">select class</option>-->
-                            <option th:each="subject : ${subjects}" th:value="${subject.id}"
-                                    th:text="${subject.name} + ' : ' + ${subject.teacher.firstName} + ' ' +
-                                     ${subject.teacher.secondName}"></option>
-                        </select>
+                        <input type="number" th:field="*{grade}" min="0" max="12"
+                               value="0" title="Input grade 1-12. 0 means absence" required>
                     </h4>
                 </div>
 
                 <div class="row my-5">
-                    <input type="submit" class="m-auto col-5 btn btn-warning" value="Update the lesson">
+                    <input type="submit" class="m-auto col-5 btn btn-warning" value="Update the records">
+                    <p class="text-danger" th:if="${exist}">* the record already exists</p>
                 </div>
 
             </table>

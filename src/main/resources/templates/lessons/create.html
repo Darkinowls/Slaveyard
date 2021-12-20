@@ -28,7 +28,7 @@
                       th:text="${class.name}"></option>
             </select>
           </h4>
-          <div class="col-10 text-danger " th:if="${exist}">• field should be unique</div>
+
         </div>
 
 
@@ -38,7 +38,6 @@
             <input id="input_date" size="60" th:field="*{date}" type="date" format="DD.MM.YYYY"
                    placeholder=" DD.MM.YYYY" required />
           </h4>
-          <div class="col-10 text-danger " th:if="${exist}">• field should be unique</div>
         </div>
 
         <script>
@@ -59,11 +58,10 @@
             <select  th:field="*{myTime.id}" required>
               <!--                        <option value="1">select class</option>-->
               <option th:each="time : ${times}" th:value="${time.id}"
-                      th:text="${#dates.format(time.start, 'HH:mm')}  +
-                                     ' - ' + ${#dates.format(time.start, 'HH:mm')} "></option>
+                      th:text=" '#' + ${time.id} + ' ' +
+                      ${#dates.format(time.start, 'HH:mm')}  + ' - ' + ${#dates.format(time.start, 'HH:mm')} "></option>
             </select>
           </h4>
-          <div class="col-10 text-danger " th:if="${exist}">• field should be unique</div>
         </div>
 
         <div class="row mb-3">
@@ -81,6 +79,7 @@
 
         <div class="row my-5">
           <input type="submit" class="m-auto col-5 btn btn-success" value="Create lesson">
+          <p class="text-danger" th:if="${exist}">* The lesson already exists</p>
         </div>
 
       </table>

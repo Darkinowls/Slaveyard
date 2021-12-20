@@ -30,18 +30,18 @@
                     <h4 class="col-5 themed-grid-col ">First name</h4>
                     <h4 class="col-5 themed-grid-col">
                         <input type="text" th:field="*{firstName}" id="firstName"
-                               pattern="^[A-Z][a-z]{2,50}$" placeholder="First name" required>
+                               pattern="^[A-Z][a-z]{2,50}$" placeholder="First name"
+                               title="Input first name like John" required>
                     </h4>
-                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
                 </div>
 
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Second name</h4>
                     <h4 class="col-5 themed-grid-col">
                         <input type="text" th:field="*{secondName}" id="secondName"
-                               pattern="^[A-Z][a-z]{2,50}$" placeholder="Second name" required>
+                               pattern="^[A-Z][a-z]{2,50}$" placeholder="Second name"
+                               title="Input second name like Smith" required>
                     </h4>
-                    <p class="col-10 text-danger themed-grid-col" th:if="${exist}">• field should be unique</p>
                 </div>
 
                 <div class="row mb-3">
@@ -57,6 +57,7 @@
 
                 <div class="row my-5">
                     <input type="submit" class="m-auto col-5 btn btn-warning" value="Update student">
+                    <p class="text-danger" th:if="${exist}">* the student already exists</p>
                 </div>
 
             </table>

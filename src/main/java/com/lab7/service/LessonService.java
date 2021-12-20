@@ -41,6 +41,10 @@ public class LessonService {
         return lessonRepository.existsByClasAndDateAndMyTime(clas, date, myTime);
     }
 
+    public Lesson getByClasAndDateAndMyTime(Clas clas, Date date, MyTime myTime){
+        return lessonRepository.getByClasAndDateAndMyTime(clas, date, myTime);
+    }
+
 
 
 }
