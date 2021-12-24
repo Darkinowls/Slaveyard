@@ -86,7 +86,6 @@ public class ClasController {
 
         }
 
-
         model.addAttribute("exist", true);
         return updateClasForm(clas.getId(), model);
 

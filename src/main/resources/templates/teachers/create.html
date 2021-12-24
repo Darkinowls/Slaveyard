@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <h4 class="col-5 themed-grid-col">Experience</h4>
+                    <h4 class="col-5 themed-grid-col">Experience in months</h4>
                     <h4 class="col-3 themed-grid-col">
                         <input type="number" th:field="*{experience}" min="0" max="999" value="0"
                                placeholder="Experience in months" required>
@@ -48,7 +48,7 @@
 
                 <div class="row my-5">
                     <input type="submit" class="m-auto col-5 btn btn-success" value="Create teacher">
-                    <p class="text-danger" th:if="${exist}">* the teacher already exists</p>
+                    <h5 class="text-danger" th:if="${exist}">* the teacher already exists</h5>
                 </div>
 
             </table>

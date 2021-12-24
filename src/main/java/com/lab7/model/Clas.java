@@ -32,4 +32,7 @@ public class Clas {
     @OneToMany(mappedBy = "clas")
     private List<Student> students;
 
+    @OneToMany(mappedBy = "clas")
+    private List<Lesson> lessons;
+
 }

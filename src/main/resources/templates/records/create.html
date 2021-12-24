@@ -37,8 +37,10 @@
                     <h4 class="col-1 themed-grid-col">
                         <select th:field="*{lesson.id}">
                             <option th:each="lesson : ${lessons}" th:value="${lesson.id}"
-                                    th:text=" 'Lesson#' + ${lesson.myTime.id} + ' ' + ${lesson.subject.name} +
-                                    ' ' + ${#dates.format(lesson.date, 'EEEE dd.MM.yyyy')}"></option>
+                                    th:text=" 'Lesson#' + ${lesson.myTime.id} +
+                                    ' ' + ${lesson.clas.name}
+                                    + ' ' + ${lesson.subject.name} +
+                                    ' ' + ${#dates.format(lesson.date, 'EEEE dd.MM.yyyy')} "></option>
                         </select>
                     </h4>
                 </div>
@@ -54,7 +56,7 @@
 
                 <div class="row my-5">
                     <input type="submit" class="m-auto col-5 btn btn-success" value="Create record">
-                    <p class="text-danger" th:if="${exist}">* the record already exists</p>
+                    <h5 class="text-danger" th:if="${exist}">* the record already exists</h5>
                 </div>
 
             </table>

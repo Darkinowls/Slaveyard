@@ -4,7 +4,11 @@ import com.lab7.model.Clas;
 import com.lab7.model.Lesson;
 import com.lab7.model.MyTime;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import java.util.Date;
+import java.util.List;
 
 
 public interface LessonRepository extends JpaRepository<Lesson, Integer> {
@@ -13,5 +17,6 @@ public interface LessonRepository extends JpaRepository<Lesson, Integer> {
 
 
     Boolean existsByClasAndDateAndMyTime(Clas clas, Date date, MyTime myTime);
+
 
 }

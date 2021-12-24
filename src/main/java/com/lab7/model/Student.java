@@ -37,7 +37,10 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private List<MyRecord> myRecords;
 
+
+
     public String calculateGrade() {
+
 
         float size = 0;
         float sum = 0;

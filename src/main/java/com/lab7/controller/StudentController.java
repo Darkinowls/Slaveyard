@@ -1,26 +1,22 @@
 package com.lab7.controller;
 
+import com.lab7.MyHash;
 import com.lab7.model.Clas;
-import com.lab7.model.MyRecord;
+
 import com.lab7.model.Student;
 import com.lab7.service.ClasService;
 import com.lab7.service.StudentService;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Controller
 public class StudentController {
@@ -48,6 +44,19 @@ public class StudentController {
         List<Clas> classes = clasService.findAll();
         model.addAttribute("classes", classes);
         return "students/create";
+    }
+
+
+    @GetMapping("/students/details/{id}")
+    public String goToDetails(@PathVariable("id") int id, Model model) {
+
+
+        model.addAttribute("student", studentService.findById(id));
+
+        model.addAttribute("evals", studentService.getEvaluation(id));
+
+
+        return "students/details";
     }
 
     @PostMapping("/students/create")

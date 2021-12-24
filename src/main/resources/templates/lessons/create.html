@@ -13,6 +13,7 @@
 <body class="d-flex h-100 text-center text-white bg-dark">
 
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
   <header th:insert="/components/header :: header"></header>
 
   <main class="m-auto">
@@ -79,7 +80,7 @@
 
         <div class="row my-5">
           <input type="submit" class="m-auto col-5 btn btn-success" value="Create lesson">
-          <p class="text-danger" th:if="${exist}">* The lesson already exists</p>
+          <h5 class="text-danger" th:if="${exist}">* The lesson already exists</h5>
         </div>
 
       </table>

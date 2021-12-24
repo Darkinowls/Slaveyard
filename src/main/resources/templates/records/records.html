@@ -16,8 +16,8 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header th:insert="/components/header :: header"></header>
 
-    <main class="my-auto mx-5" th:switch="${records}">
-        <h3 th:case="null">No Records!</h3>
+    <main class="my-auto mx-5" th:switch="${records.size()}">
+        <h3 th:case="0">No Records!</h3>
         <div th:case="*" id="myTable">
 
             <input type="text" onkeyup="search()"
@@ -44,16 +44,23 @@
 
             <div class="row mb-2" th:each="r : ${records}">
                 <h5 class="col-1 themed-grid-col" th:text="${r.id}"></h5>
-                <h5 class="col-2 themed-grid-col" th:text="${r.student.firstName} + ' ' + ${r.student.secondName}"></h5>
+                <h5 class="col-2 themed-grid-col" th:text="${r.student.clas.name} + ' ' +
+                 ${r.student.firstName} + ' ' + ${r.student.secondName}"></h5>
                 <h5 class="col-2 themed-grid-col" th:text="${#dates.format(r.lesson.date, 'EEEE dd.MM.yyyy')}"></h5>
 
-                <h5 class="col-1 themed-grid-col" th:if="${r.grade == 0}">Absent</h5>
-                <h5 class="col-1 themed-grid-col" th:unless="${r.grade == 0}" th:text="${r.grade}"></h5>
+                <h5 class="col-1" th:if="${r.student.clas.name == r.lesson.clas.name}">
+                    <span th:if="${r.grade == 0}">Absent</span>
+                    <span th:unless="${r.grade == 0}" th:text="${r.grade}"></span>
+                </h5>
+
+                <h5 class="col-1" th:unless="${r.student.clas.name == r.lesson.clas.name}">
+                    <span class="text-info" th:if="${r.grade == 0}">Absent</span>
+                    <span class="text-info" th:unless="${r.grade == 0}" th:text="${r.grade}"></span>
+                </h5>
 
                 <h5 class="col-1 themed-grid-col" th:text="${r.lesson.subject.name}"></h5>
                 <h5 class="col-2 themed-grid-col" th:text="${r.lesson.subject.teacher.firstName} +
                  ' ' + ${r.lesson.subject.teacher.secondName}"></h5>
-
 
 
                 <h5 class=" themed-grid-col col-1 ">
@@ -70,14 +77,13 @@
             </div>
 
 
+            <h5 class="p-auto m-5">
+                <a class="nav-link text-success mx-auto " href="/records/create" style="width: 250px;">
+                    Create a new record
+                </a>
+            </h5>
+
         </div>
-
-        <h5 class="p-auto m-5">
-            <a class="nav-link text-success mx-auto " href="/records/create" style="width: 250px;">
-                Create a new record
-            </a>
-        </h5>
-
 
     </main>
 

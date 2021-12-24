@@ -22,7 +22,8 @@
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Name</h4>
                     <h4 class="col-5 themed-grid-col">
-                        <input type="text" th:field="*{name}" placeholder="subject name" pattern="^[a-z]{3,50}$" required>
+                        <input type="text" th:field="*{name}" placeholder="subject name"
+                               pattern="^[a-z]{3,50}$" title="Input subject name like biology" required>
                     </h4>
                 </div>
 
@@ -42,7 +43,7 @@
 
                 <div class="row my-5">
                     <input type="submit" class="m-auto col-5 btn btn-success" value="Create subject">
-                    <p class="text-danger" th:if="${exist}">* the subject already exists</p>
+                    <h5 class="text-danger" th:if="${exist}">* the subject already exists</h5>
                 </div>
 
             </table>

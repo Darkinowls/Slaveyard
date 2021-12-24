@@ -16,8 +16,8 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header th:insert="/components/header :: header"></header>
 
-    <main class="my-auto mx-5" th:switch="${teachers}">
-        <h3 th:case="null"> No Teachers!</h3>
+    <main class="my-auto mx-5" th:switch="${teachers.size()}">
+        <h3 th:case="0"> No Teachers!</h3>
         <div th:case="*" id="myTable">
 
             <input type="text" onkeyup="search()"
