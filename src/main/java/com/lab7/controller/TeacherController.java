@@ -1,9 +1,6 @@
 package com.lab7.controller;
 
-import com.lab7.model.Clas;
-import com.lab7.model.Student;
 import com.lab7.model.Teacher;
-import com.lab7.service.ClasService;
 import com.lab7.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -47,10 +47,10 @@
                 <div class="row mb-3">
                     <h4 class="col-5 themed-grid-col">Class</h4>
                     <h4 class="col-1 themed-grid-col">
-                        <select  th:field="*{clas.id}">
+                        <select  th:field="*{myClass.id}">
                             <!--                        <option value="1">select class</option>-->
-                            <option th:each="clas : ${classes}" th:value="${clas.id}"
-                                    th:text="${clas.name}"></option>
+                            <option th:each="myClass : ${aClasses}" th:value="${myClass.id}"
+                                    th:text="${myClass.name}"></option>
                         </select>
                     </h4>
                 </div>

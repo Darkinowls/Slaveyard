@@ -1,7 +1,6 @@
 package com.lab7.controller;
 
-import com.lab7.MyHash;
-import com.lab7.model.Clas;
+import com.lab7.model.MyClass;
 
 import com.lab7.model.Student;
 import com.lab7.service.ClasService;
@@ -41,8 +40,8 @@ public class StudentController {
 
     @GetMapping("/students/create")
     public String createStudentForm(Student student, Model model) {
-        List<Clas> classes = clasService.findAll();
-        model.addAttribute("classes", classes);
+        List<MyClass> aClasses = clasService.findAll();
+        model.addAttribute("classes", aClasses);
         return "students/create";
     }
 
@@ -84,8 +83,8 @@ public class StudentController {
         Student student = studentService.findById(id);
         model.addAttribute("student", student);
 
-        List<Clas> classes = clasService.findAll();
-        model.addAttribute("classes", classes);
+        List<MyClass> aClasses = clasService.findAll();
+        model.addAttribute("classes", aClasses);
 
         return "students/update";
     }
@@ -97,7 +96,7 @@ public class StudentController {
 
         Student self = studentService.getByFirstNameAndSecondName(student.getFirstName(), student.getSecondName());
 
-        if (self == null || (self.getId() == student.getId() && self.getClas().getId() != student.getClas().getId())) {
+        if (self == null || (self.getId() == student.getId() && self.getMyClass().getId() != student.getMyClass().getId())) {
 
             studentService.saveStudent(student);
             return REDIRECT_STUDENTS;

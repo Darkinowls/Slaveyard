@@ -27,8 +27,8 @@ public class TeacherService {
         return teacherRepository.findAll();
     }
 
-    public Teacher saveTeacher(Teacher student) {
-        return teacherRepository.save(student);
+    public void saveTeacher(Teacher teacher) {
+        teacherRepository.save(teacher);
     }
 
     public void deleteById(int id) {

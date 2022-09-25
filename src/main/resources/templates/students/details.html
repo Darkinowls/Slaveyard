@@ -18,11 +18,11 @@
 
     <main class="my-auto mx-5" th:switch="${evals.keySet().size()}">
         <h3 th:case="0" th:text=" 'No data about ' + ${student.firstName} + ' ' + ${student.secondName}+
-             ' ' + ${student.getClas().getName()} + ' !'"></h3>
+             ' ' + ${student.getMyClass().getName()} + ' !'"></h3>
 
         <div th:case="*">
             <h3 class="mb-5" th:text=" 'Report on ' + ${student.firstName} + ' ' + ${student.secondName} +
-             ' from ' + ${student.getClas().getName()}">
+             ' from ' + ${student.getMyClass().getName()}">
             </h3>
 
 

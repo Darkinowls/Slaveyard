@@ -15,12 +15,11 @@ import java.util.List;
 @Table(name = "classes")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Clas {
+public class MyClass {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
 
     @Column(name = "name", unique = true)
     private String name;
@@ -29,10 +28,15 @@ public class Clas {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    @OneToMany(mappedBy = "clas")
+    @OneToMany(mappedBy = "myClass")
     private List<Student> students;
 
-    @OneToMany(mappedBy = "clas")
+    @OneToMany(mappedBy = "myClass")
     private List<Lesson> lessons;
 
+    public MyClass(int id, String name, Teacher teacher) {
+        this.id = id;
+        this.name = name;
+        this.teacher = teacher;
+    }
 }

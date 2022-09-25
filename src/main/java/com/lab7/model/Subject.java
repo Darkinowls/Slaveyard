@@ -19,7 +19,7 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     private String name;
 
     @ManyToOne
@@ -29,5 +29,13 @@ public class Subject {
     @OneToMany(mappedBy = "subject")
     private List<Lesson> lessons;
 
+    @OneToMany(mappedBy = "lesson")
+    private List<MyRecord> records;
 
+
+    public Subject(int id, String name, Teacher teacher) {
+        this.id = id;
+        this.name = name;
+        this.teacher = teacher;
+    }
 }

@@ -32,12 +32,17 @@ public class Student {
 
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private Clas clas;
+    private MyClass myClass;
 
     @OneToMany(mappedBy = "student")
     private List<MyRecord> myRecords;
 
-
+    public Student(int id, String firstName, String secondName, MyClass myClass) {
+        this.id = id;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.myClass = myClass;
+    }
 
     public String calculateGrade() {
 

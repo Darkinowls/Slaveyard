@@ -41,7 +41,7 @@
 
             <div class="row mb-2" th:each="l:${lessons}">
                 <h5 class="col-1 themed-grid-col" th:text="${l.id}"></h5>
-                <h5 class="col-1 themed-grid-col" th:text="${l.clas.name}"></h5>
+                <h5 class="col-1 themed-grid-col" th:text="${l.myClass.name}"></h5>
                 <h5 class="col-2 themed-grid-col" th:text="${#dates.format(l.date, 'EEEE dd.MM.yyyy')}"></h5>
 
                 <h5 class="col-2 themed-grid-col" th:text=" '#' + ${l.myTime.id} + ' ' +

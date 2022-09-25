@@ -1,6 +1,6 @@
 package com.lab7.service;
 
-import com.lab7.model.Clas;
+import com.lab7.model.MyClass;
 import com.lab7.model.Lesson;
 import com.lab7.model.MyTime;
 import com.lab7.repository.LessonRepository;
@@ -37,12 +37,12 @@ public class LessonService {
         lessonRepository.deleteById(id);
     }
 
-    public Boolean existsByClasAndDateAndMyTime(Clas clas, Date date, MyTime myTime){
-        return lessonRepository.existsByClasAndDateAndMyTime(clas, date, myTime);
+    public Boolean existsByClasAndDateAndMyTime(MyClass myClass, Date date, MyTime myTime){
+        return lessonRepository.existsByMyClassAndDateAndMyTime(myClass, date, myTime);
     }
 
-    public Lesson getByClasAndDateAndMyTime(Clas clas, Date date, MyTime myTime){
-        return lessonRepository.getByClasAndDateAndMyTime(clas, date, myTime);
+    public Lesson getByClasAndDateAndMyTime(MyClass myClass, Date date, MyTime myTime){
+        return lessonRepository.getByMyClassAndDateAndMyTime(myClass, date, myTime);
     }
 
 

@@ -15,7 +15,7 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header th:insert="/components/header :: header"></header>
 
-    <main class="my-auto mx-5" th:switch="${classes.size()}">
+    <main class="my-auto mx-5" th:switch="${aClasses.size()}">
         <h3 th:case="0"> No Classes!</h3>
         <div th:case="*" id="myTable">
 
@@ -32,19 +32,19 @@
                 <h4 class="col-2 themed-grid-col"><b>options</b></h4>
             </div>
 
-            <div class="row mb-2" th:each="c:${classes}">
+            <div class="row mb-2" th:each="c:${aClasses}">
                 <h5 class="col-1 themed-grid-col" th:text="${c.id}"></h5>
                 <h5 class="col-2 themed-grid-col" th:text="${c.name}"></h5>
                 <h5 class="col-2 themed-grid-col" th:text="${c.teacher.firstName} + ' ' + ${c.teacher.secondName}"></h5>
 <!--                <h5 class="col-2 themed-grid-col" th:text="${c.teacher.secondName}"></h5>-->
 
                 <h5 class=" themed-grid-col col-1 ">
-                    <a class="text-warning" th:href="@{/classes/update/{id}(id=${c.id})}">
+                    <a class="text-warning" th:href="@{/aClasses/update/{id}(id=${c.id})}">
                         Update
                     </a>
                 </h5>
                 <h5 class="themed-grid-col col-1 ">
-                    <a class="text-danger" th:href="@{/classes/delete/{id}(id=${c.id})}">
+                    <a class="text-danger" th:href="@{/aClasses/delete/{id}(id=${c.id})}">
                         Delete
                     </a>
                 </h5>
@@ -54,7 +54,7 @@
         </div>
 
         <h5 class="p-auto m-5">
-            <a class="nav-link text-success mx-auto " href="/classes/create" style="width: 250px;">
+            <a class="nav-link text-success mx-auto " href="/aClasses/create" style="width: 250px;">
                 Create a new class
             </a>
         </h5>

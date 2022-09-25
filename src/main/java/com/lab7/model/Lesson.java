@@ -1,6 +1,5 @@
 package com.lab7.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,22 +22,31 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
+
     @Column(name = "date")
     private Date date;
 
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private Clas clas;
+    private MyClass myClass;
 
     @ManyToOne
     @JoinColumn(name = "time_id")
     private MyTime myTime;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
     @OneToMany(mappedBy = "lesson")
     private List<MyRecord> myRecords;
 
+    public Lesson(int id, Date date, MyClass myClass, MyTime myTime, Subject subject) {
+        this.id = id;
+        this.date = date;
+        this.myClass = myClass;
+        this.myTime = myTime;
+        this.subject = subject;
+    }
 }

@@ -1,6 +1,6 @@
 package com.lab7.controller;
 
-import com.lab7.model.Clas;
+import com.lab7.model.MyClass;
 import com.lab7.model.Teacher;
 import com.lab7.service.ClasService;
 import com.lab7.service.TeacherService;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class ClasController {
@@ -29,27 +28,27 @@ public class ClasController {
 
     @GetMapping("/classes")
     public String findAll(Model model) {
-        List<Clas> classes = clasService.findAll();
-        model.addAttribute("classes", classes);
+        List<MyClass> aClasses = clasService.findAll();
+        model.addAttribute("classes", aClasses);
         return "classes/classes";
     }
 
     @GetMapping("/classes/create")
-    public String createClasForm(Clas clas, Model model) {
+    public String createClasForm(MyClass myClass, Model model) {
         List<Teacher> teachers = teacherService.findAll();
         model.addAttribute("teachers", teachers);
         return "classes/create";
     }
 
     @PostMapping("/classes/create")
-    public String createClass(Clas clas, Model model) {
+    public String createClass(MyClass myClass, Model model) {
 
-        if ((clasService.existsByName(clas.getName()))) {
+        if ((clasService.existsByName(myClass.getName()))) {
             model.addAttribute("exist", true);
-            return createClasForm(clas, model);
+            return createClasForm(myClass, model);
         }
 
-        clasService.saveClas(clas);
+        clasService.saveClas(myClass);
         return REDIRECT_CLASSES;
     }
 
@@ -63,8 +62,8 @@ public class ClasController {
     @GetMapping("/classes/update/{id}")
     public String updateClasForm(@PathVariable("id") int id, Model model) {
 
-        Clas clas = clasService.findById(id);
-        model.addAttribute("clas", clas);
+        MyClass myClass = clasService.findById(id);
+        model.addAttribute("clas", myClass);
 
         List<Teacher> teachers = teacherService.findAll();
         model.addAttribute("teachers", teachers);
@@ -74,20 +73,20 @@ public class ClasController {
 
 
     @PostMapping("/classes/update")
-    public String updateClas(Clas clas, Model model) {
+    public String updateClas(MyClass myClass, Model model) {
 
-        Clas self = clasService.getByName(clas.getName());
+        MyClass self = clasService.getByName(myClass.getName());
 
 
-        if (self == null || (self.getId() == clas.getId() && clas.getTeacher().getId() != self.getTeacher().getId())) {
+        if (self == null || (self.getId() == myClass.getId() && myClass.getTeacher().getId() != self.getTeacher().getId())) {
 
-            clasService.saveClas(clas);
+            clasService.saveClas(myClass);
             return REDIRECT_CLASSES;
 
         }
 
         model.addAttribute("exist", true);
-        return updateClasForm(clas.getId(), model);
+        return updateClasForm(myClass.getId(), model);
 
 
     }

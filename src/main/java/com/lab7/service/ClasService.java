@@ -1,7 +1,6 @@
 package com.lab7.service;
 
-import com.lab7.model.Clas;
-import com.lab7.model.Teacher;
+import com.lab7.model.MyClass;
 import com.lab7.repository.ClasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,16 +19,16 @@ public class ClasService {
     }
 
 
-    public Clas findById(int id) {
+    public MyClass findById(int id) {
         return clasRepository.findById(id).orElse(null);
     }
 
-    public List<Clas> findAll() {
+    public List<MyClass> findAll() {
         return clasRepository.findAll();
     }
 
-    public Clas saveClas(Clas clas) {
-        return clasRepository.save(clas);
+    public MyClass saveClas(MyClass myClass) {
+        return clasRepository.save(myClass);
 
     }
 
@@ -37,7 +36,7 @@ public class ClasService {
         return clasRepository.existsByName(name);
     }
 
-    public Clas getByName(String name) {
+    public MyClass getByName(String name) {
         return clasRepository.getByName(name);
     }
 

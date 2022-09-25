@@ -44,16 +44,16 @@
 
             <div class="row mb-2" th:each="r : ${records}">
                 <h5 class="col-1 themed-grid-col" th:text="${r.id}"></h5>
-                <h5 class="col-2 themed-grid-col" th:text="${r.student.clas.name} + ' ' +
+                <h5 class="col-2 themed-grid-col" th:text="${r.student.myClass.name} + ' ' +
                  ${r.student.firstName} + ' ' + ${r.student.secondName}"></h5>
                 <h5 class="col-2 themed-grid-col" th:text="${#dates.format(r.lesson.date, 'EEEE dd.MM.yyyy')}"></h5>
 
-                <h5 class="col-1" th:if="${r.student.clas.name == r.lesson.clas.name}">
+                <h5 class="col-1" th:if="${r.student.myClass.name == r.lesson.myClass.name}">
                     <span th:if="${r.grade == 0}">Absent</span>
                     <span th:unless="${r.grade == 0}" th:text="${r.grade}"></span>
                 </h5>
 
-                <h5 class="col-1" th:unless="${r.student.clas.name == r.lesson.clas.name}">
+                <h5 class="col-1" th:unless="${r.student.myClass.name == r.lesson.myClass.name}">
                     <span class="text-info" th:if="${r.grade == 0}">Absent</span>
                     <span class="text-info" th:unless="${r.grade == 0}" th:text="${r.grade}"></span>
                 </h5>

@@ -38,8 +38,8 @@ public class LessonController {
     @GetMapping("/lessons/create")
     public String createLessonForm(Lesson lesson, Model model) {
 
-        List<Clas> classes = clasService.findAll();
-        model.addAttribute("classes", classes);
+        List<MyClass> aClasses = clasService.findAll();
+        model.addAttribute("classes", aClasses);
 
         List<MyTime> times = myTimeService.findAll();
         model.addAttribute("times", times);
@@ -54,7 +54,7 @@ public class LessonController {
     @PostMapping("/lessons/create")
     public String createLesson(Lesson lesson, Model model) {
 
-        if (Boolean.TRUE.equals(lessonService.existsByClasAndDateAndMyTime(lesson.getClas(), lesson.getDate(), lesson.getMyTime()))) {
+        if (Boolean.TRUE.equals(lessonService.existsByClasAndDateAndMyTime(lesson.getMyClass(), lesson.getDate(), lesson.getMyTime()))) {
             model.addAttribute("exist", true);
             return createLessonForm(lesson, model);
         }
@@ -77,8 +77,8 @@ public class LessonController {
         Lesson lesson = lessonService.findById(id);
         model.addAttribute("lesson", lesson);
 
-        List<Clas> classes = clasService.findAll();
-        model.addAttribute("classes", classes);
+        List<MyClass> aClasses = clasService.findAll();
+        model.addAttribute("classes", aClasses);
 
         List<MyTime> times = myTimeService.findAll();
         model.addAttribute("times", times);
@@ -94,7 +94,7 @@ public class LessonController {
     public String updateLesson(Lesson lesson, Model model) {
 
 
-        Lesson self = lessonService.getByClasAndDateAndMyTime(lesson.getClas(), lesson.getDate(), lesson.getMyTime());
+        Lesson self = lessonService.getByClasAndDateAndMyTime(lesson.getMyClass(), lesson.getDate(), lesson.getMyTime());
 
 
         if (self == null || (self.getId() == lesson.getId() && self.getSubject().getId() != lesson.getSubject().getId())) {

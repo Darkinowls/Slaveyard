@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Table(name = "teachers")
 public class Teacher {
 
@@ -31,4 +32,11 @@ public class Teacher {
 
     @OneToMany(mappedBy = "teacher")
     private List<Subject> subjects;
+
+    public Teacher(int id, String firstName, String secondName, int experience) {
+        this.id = id;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.experience = experience;
+    }
 }

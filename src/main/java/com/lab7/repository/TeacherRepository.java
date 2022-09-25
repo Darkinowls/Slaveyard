@@ -9,4 +9,5 @@ public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
 
     Teacher getByFirstNameAndSecondName(String firstName, String secondName);
 
+
 }
