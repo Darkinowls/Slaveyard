@@ -18,7 +18,7 @@ Web-application created to manage pupils and teachers in a school
 ![student list](students.png)
 
 ###### The student report. Filtered by math subject.
-![student list](report.png)
+![student report](report.png)
 
 
 > TODO: rewrite frontend with react or angular. Thymeleaf is cringe 
