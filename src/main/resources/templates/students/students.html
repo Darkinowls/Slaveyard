@@ -39,8 +39,8 @@
                 <h5 class="col-1 themed-grid-col" th:text="${s.id}"></h5>
                 <h5 class="col-2 themed-grid-col" th:text="${s.firstName} + ' ' + ${s.secondName}"></h5>
                 <h5 class="col-1 themed-grid-col" th:text="${s.myClass.name}"></h5>
-                <h5 class="col-1 themed-grid-col" th:text="${s.calculateGrade()}"></h5>
-                <h5 class="col-1 themed-grid-col" th:text="${s.calculatePresence() + '%'}"></h5>
+                <h5 class="col-1 themed-grid-col" th:text="${s.getGrade()}"></h5>
+                <h5 class="col-1 themed-grid-col" th:text="${s.getPresence() + '%'}"></h5>
 
 
                 <h5 class=" themed-grid-col col-1 ">

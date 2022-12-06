@@ -43,7 +43,7 @@
                     <h4 class="col-5 themed-grid-col">Lesson</h4>
                     <h4 class="col-1 themed-grid-col">
                         <select th:field="*{lesson.id}">
-                            <option th:each="lesson : ${aClasses.lessons}" th:value="${lesson.id}"
+                            <option th:each="lesson : ${classes.lessons}" th:value="${lesson.id}"
                                     th:text=" 'Lesson#' + ${lesson.myTime.id} + ' ' + ${lesson.subject.name} +
                                     ' ' + ${#dates.format(lesson.date, 'EEEE dd.MM.yyyy')}"></option>
                         </select>

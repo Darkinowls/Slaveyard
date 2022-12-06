@@ -1,3 +1,9 @@
+CREATE USER 'spring_user'@'localhost' IDENTIFIED BY 'spring!';
+
+create database spring_db;
+
+GRANT ALL PRIVILEGES ON spring_db.* TO 'spring_user'@'localhost';
+
 use spring_db;
 
 create table if not exists spring_db.teachers
@@ -48,6 +54,12 @@ create table if not exists spring_db.times
     end   time not null
 );
 
+insert into spring_db.times (start, end)
+VALUES ('9:00:00', '10:00:00'),
+       ('10:10:00', '11:10:00'),
+       ('11:20:00', '12:20:00'),
+       ('12:40:00', '13:40:00');
+
 create table if not exists spring_db.lessons
 (
     id         int auto_increment
@@ -63,15 +75,6 @@ create table if not exists spring_db.lessons
     constraint lessons_ibfk_3
         foreign key (subject_id) references spring_db.subjects (id)
 );
-
-create index if not exists class_id
-    on spring_db.lessons (class_id);
-
-create index if not exists subject_id
-    on spring_db.lessons (subject_id);
-
-create index if not exists time_id
-    on spring_db.lessons (time_id);
 
 create table if not exists spring_db.records
 (

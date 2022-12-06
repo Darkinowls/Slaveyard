@@ -44,7 +44,7 @@
                     <h4 class="col-1 themed-grid-col">
                         <select th:field="*{myClass.id}">
                             <!--                        <option value="1">select class</option>-->
-                            <option th:each="myClass : ${aClasses}" th:value="${myClass.id}"
+                            <option th:each="myClass : ${classes}" th:value="${myClass.id}"
                                     th:text="${myClass.name}"></option>
                         </select>
                     </h4>
